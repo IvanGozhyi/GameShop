@@ -4,13 +4,7 @@ $text-color: #fff;
 $accent: #6c5ce7;
 $error: #ff4d4f;
 
-.auth-wrapper {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at top, #1b1b1b, #000);
-}
+
 
 .form {
   width: 320px;
@@ -22,6 +16,7 @@ $error: #ff4d4f;
   flex-direction: column;
   gap: 14px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  text-align: center;
 
   h2 {
     text-align: center;

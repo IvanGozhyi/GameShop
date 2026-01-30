@@ -2,7 +2,9 @@ import React from 'react';
 
 function PurchasesPage(props) {
     return (
-        <div></div>
+        <div>
+            Your history of purchases will be displayed here.
+        </div>
     );
 }
 

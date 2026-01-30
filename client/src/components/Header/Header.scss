@@ -1,0 +1,80 @@
+$primary-color: #6366f1;
+$text-color: #ffffff;
+$glass-bg: rgba(30, 30, 36, 0.8);
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background: $glass-bg;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+
+  &__logo {
+    height: 125px;
+    width: 150px;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 2rem;
+
+
+    &-link {
+      color: $text-color;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+      position: relative;
+
+      &:hover {
+        color: $primary-color;
+      }
+
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: $primary-color;
+        transition: width 0.3s ease;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__login-btn {
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba($primary-color, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}

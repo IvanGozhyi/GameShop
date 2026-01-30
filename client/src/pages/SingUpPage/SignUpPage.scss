@@ -1,0 +1,35 @@
+$form-bg: #111;
+$form-border: #222;
+$text-color: #fff;
+$accent: #6c5ce7;
+$error: #ff4d4f;
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #1b1b1b, #000);
+  text-align: center;
+  flex-direction: column;
+}
+
+.signIn {
+  margin-top: 20px;
+  color: $text-color;
+  text-align: center;
+  font-size: 14px;
+
+  p {
+    margin-top: 5px;
+  }
+
+  a {
+    color: #6c5ce7;
+    text-decoration: none;
+    font-weight: bold;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

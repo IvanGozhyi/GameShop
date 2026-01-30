@@ -1,0 +1,29 @@
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #1b1b1b, #000);
+  text-align: center;
+  flex-direction: column;
+}
+
+.signIn {
+  margin-top: 20px;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+}
+.signIn p {
+  margin-top: 5px;
+}
+.signIn a {
+  color: #6c5ce7;
+  text-decoration: none;
+  font-weight: bold;
+}
+.signIn a:hover {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=SignUpPage.css.map */

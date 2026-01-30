@@ -1,0 +1,36 @@
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 40px 20px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  align-items: start;
+  background-color: #121214;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.catalog .status-message {
+  grid-column: 1/-1;
+  text-align: center;
+  color: #a1a1aa;
+  font-size: 1.5rem;
+  padding-top: 50px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.game-card {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/*# sourceMappingURL=Catalog.css.map */
