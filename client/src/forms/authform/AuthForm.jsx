@@ -1,6 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "../styles/style.css";
+import {useDispatch} from "react-redux";
+import {loginUser} from "../../store/features/users.js";
 
 const LoginSchema = Yup.object({
     email: Yup.string()
@@ -12,13 +14,15 @@ const LoginSchema = Yup.object({
 });
 
 export default function AuthForm() {
+    const dispatch = useDispatch();
     return (
         <Formik
             initialValues={{ email: "", password: "" }}
             validationSchema={LoginSchema}
             onSubmit={(values) => {
-                console.log("LOGIN DATA:", values);
+                dispatch(loginUser({ email: values.email, password: values.password }));
             }}
+
         >
             {() => (
                 <Form className="form">

@@ -1,11 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose'
 import cors from 'cors';
+import bcrypt from 'bcrypt';
+import * as jwt from "crypto.js";
 
 
 
 const app = express();
 const PORT = 3000;
+const sessions = {};
 
 
 app.use(cors());
@@ -29,8 +32,37 @@ const GameSchema = new mongoose.Schema({
 
 const Game = mongoose.model("games", GameSchema);
 
+//Specified scheme for users
+const UserSchema = new mongoose.Schema({
+    username:{
+        type:String,
+        required:true,
+        trim:true,
+        minlength:3,
+    },
+    email:{
+        type:String,
+        unique:true,
+        required: true,
+        lowercase: true,
+    },
+    password:{
+        type:String,
+        required: true,
+        select:true,
+    },
+    role:{
+        type:String,
+        enum: ['user', 'admin'],
+        default: 'user'
+    }
+}, { timestamps: true });
+
+const User = mongoose.model("users", UserSchema);
 
 
+
+//Back for games
 app.get('/api/games', async (req, res) => {
     res.set('Cache-Control', 'no-store');
     try {
@@ -91,6 +123,77 @@ app.get('/api/games/:id', async (req, res) => {
     } catch (error) {
         console.error("Error fetching single game:", error);
         res.status(500).json({ error: 'Server error' });
+    }
+});
+
+//REGISTER
+app.post('/api/register', async (req, res) => {
+    try {
+        const { username, email, password } = req.body;
+
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: 'User already exists' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newUser = await User.create({
+            username,
+            email,
+            password: hashedPassword,
+            role: email === "givan2981@gmail.com" ? "admin" : "user"
+        });
+
+        const token = jwt.sign({ id: newUser._id, role: newUser.role }, process.env.JWT_SECRET, { expiresIn: '7d' });
+        res.cookie('token', token, { httpOnly: true })
+            .status(201)
+            .json({
+                id: newUser._id,
+                userName: newUser.username,
+                email: newUser.email,
+                role: newUser.role,
+            });
+
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Registration error' });
+    }
+});
+
+//LOGIN
+app.post('/api/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        const user = await User.findOne({ email }).select("+password");
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+
+        const sessionId = crypto.randomUUID();
+        sessions[sessionId] = user._id;
+
+        res.json({
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email,
+                role: user.role,
+            },
+            sessionId,
+        });
+
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Login error' });
     }
 });
 

@@ -1,6 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "../styles/style.css";
+import {useDispatch} from "react-redux";
+import {registerUser} from "../../store/features/users.js";
 
 const RegisterSchema = Yup.object({
     username: Yup.string()
@@ -18,6 +20,7 @@ const RegisterSchema = Yup.object({
 });
 
 export default function SignUpForm() {
+    const dispatch = useDispatch();
     return (
         <Formik
             initialValues={{
@@ -27,8 +30,9 @@ export default function SignUpForm() {
                 confirmPassword: "",
             }}
             validationSchema={RegisterSchema}
-            onSubmit={(values) => {
-                console.log("REGISTER DATA:", values);
+            onSubmit={({ username, email, password }) => {
+                console.log("Submitting payload:", { username, email, password });
+                dispatch(registerUser({ username, email, password }));
             }}
         >
             {() => (
