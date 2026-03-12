@@ -2,6 +2,8 @@ import React from 'react';
 import './Header.css';
 import {useNavigate} from "react-router-dom";
 import logo from '../../assets/logo.png';
+import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
+
 
 function Header() {
     const navigate = useNavigate();
@@ -16,11 +18,17 @@ function Header() {
                 <a href="/catalog" className="header__nav-link">Games</a>
                 <a href="/purchase" className="header__nav-link">Purchases</a>
             </nav>
+
+            <div className="header__cart">
+                <ShoppingCart />
+            </div>
+
             <div className="header__actions">
                 <button className="header__login-btn" type="button" onClick={handleClick}>
                     Login
                 </button>
             </div>
+
         </header>
     );
 }
