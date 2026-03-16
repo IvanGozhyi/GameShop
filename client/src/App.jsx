@@ -5,6 +5,7 @@ import Header from "./components/Header/Header.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
+import Toast from "./components/Toast/Toast.jsx";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Provider store={store}>
             <BrowserRouter>
                     <Header />
+                    <Toast/>
                     <main className="app-content">
                         <AppRoutes />
                     </main>

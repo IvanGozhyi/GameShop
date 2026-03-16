@@ -1,0 +1,10 @@
+.forForm {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #1b1b1b, #000);
+  text-align: center;
+}
+
+/*# sourceMappingURL=AddGamePage.css.map */

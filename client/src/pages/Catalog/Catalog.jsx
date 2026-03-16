@@ -9,6 +9,7 @@ function Catalog() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { gamesList, status, error } = useSelector((state) => state.games);
+    const user = useSelector(state => state.auth?.user);
 
     useEffect(() => {
         if (status === 'idle') {
@@ -22,7 +23,9 @@ function Catalog() {
 
     return (
         <div className="catalog">
+            {user?.role === 'admin' && (
             <button type="button" onClick={handleAddGame}>Add Game</button>
+            )}
             {gamesList.map((game) => (
                 <GameCard
                     key={game._id}

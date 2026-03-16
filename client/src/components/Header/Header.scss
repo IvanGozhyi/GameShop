@@ -78,3 +78,30 @@ $glass-bg: rgba(30, 30, 36, 0.8);
     }
   }
 }
+
+.header__user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-greeting {
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.header__logout-btn {
+  background-color: #ff4757;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.header__logout-btn:hover {
+  background-color: #ff6b81;
+}

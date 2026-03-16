@@ -2,8 +2,13 @@ import express from 'express';
 import mongoose from 'mongoose'
 import cors from 'cors';
 import bcrypt from 'bcrypt';
-import * as jwt from "crypto.js";
+import 'dotenv/config';
 
+
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 
 
 const app = express();

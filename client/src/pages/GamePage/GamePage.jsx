@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import './GamePage.css';
 import {useDispatch} from "react-redux";
 import {addToCart} from "../../store/features/cart.js";
+import {shopObserver} from "../../utils/Observer.js";
 
 function GamePage() {
 
@@ -30,6 +31,7 @@ function GamePage() {
                 price: game.price,
             })
         );
+        shopObserver.notify('ITEM_ADDED', { name: game.name });
     }
 
 

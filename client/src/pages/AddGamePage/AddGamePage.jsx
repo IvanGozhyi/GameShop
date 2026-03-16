@@ -1,9 +1,10 @@
 import React from 'react';
 import GameForm from "../../forms/GameForm/GameForm.jsx";
+import './AddGamePage.css'
 
-function AddGamePage(props) {
+function AddGamePage() {
     return (
-        <div>
+        <div className="forForm">
             <GameForm />
         </div>
     );

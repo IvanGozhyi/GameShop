@@ -1,12 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registerUser, loginUser } from './users';
 
+const getUserFromStorage = () => {
+    try {
+        const savedUser = localStorage.getItem('user');
+        return savedUser ? JSON.parse(savedUser) : null;
+    } catch (error) {
+        return null;
+    }
+};
+
+const getSessionFromStorage = () => {
+    return localStorage.getItem('sessionId') || null;
+};
+
 
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        user: null,
-        isAuth: false,
+        user: getUserFromStorage(),
+        isAuth: !!getSessionFromStorage(),
         status: 'idle',
         error: null,
     },

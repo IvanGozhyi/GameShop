@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import "../styles/style.css";
 import {useDispatch} from "react-redux";
 import {loginUser} from "../../store/features/users.js";
+import {useNavigate} from "react-router-dom";
 
 const LoginSchema = Yup.object({
     email: Yup.string()
@@ -15,12 +16,14 @@ const LoginSchema = Yup.object({
 
 export default function AuthForm() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     return (
         <Formik
             initialValues={{ email: "", password: "" }}
             validationSchema={LoginSchema}
             onSubmit={(values) => {
                 dispatch(loginUser({ email: values.email, password: values.password }));
+                navigate("/");
             }}
 
         >
