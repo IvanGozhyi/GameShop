@@ -39,3 +39,5 @@ The project was built as a practical application to demonstrate frontend and bac
 ---
 
 ## Project Structure
+client/ # Frontend (React)
+server/ # Backend (Node.js / Express)
